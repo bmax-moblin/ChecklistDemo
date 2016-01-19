@@ -1,1 +1,1 @@
-This app demonstrates the usage of a Checklist to synchronize the results of multiple parallel asynchronous tasks.
+This app demonstrates the usage of a Checklist to synchronize the results of multiple parallel asynchronous tasks. Look here: https://github.com/bmax-moblin/ChecklistDemo/blob/master/app/src/main/java/dev/bmax/checklistdemo/logic/HomeScreenLogic.java
