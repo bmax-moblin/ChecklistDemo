@@ -9,7 +9,7 @@ enum MessagePrerequisites {
 
 Create the checklist:
 <code><pre>
-final Checklist<MessagePrerequisites> checklist = new Checklist<>(
+final Checklist\<MessagePrerequisites\> checklist = new Checklist<>(
         MessagePrerequisites.values(), MessagePrerequisites.class
 );
 </pre></code>
