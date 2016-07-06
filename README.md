@@ -1,4 +1,4 @@
-This app demonstrates the usage of a Checklist to synchronize the results of multiple parallel asynchronous tasks. 
+This app demonstrates the usage of a Checklist to synchronize the results of some concurrent tasks. 
 
 Define the set of required objects/events:
 <code><pre>
