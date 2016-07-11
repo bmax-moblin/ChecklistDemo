@@ -35,4 +35,4 @@ mProvider.loadTitle(new DataProvider.LoadTitleCallback() {
 });
 </pre></code>
 
-See the full example here: https://github.com/bmax-moblin/ChecklistDemo/blob/master/app/src/main/java/dev/bmax/checklistdemo/logic/HomeScreenLogic.java
+See the full [example] (https://github.com/bmax-moblin/ChecklistDemo/blob/master/app/src/main/java/dev/bmax/checklistdemo/logic/HomeScreenLogic.java)
