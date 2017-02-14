@@ -2,18 +2,28 @@ package dev.bmax.checklistdemo.data;
 
 import android.os.AsyncTask;
 
+import java.util.Random;
+
 import dev.bmax.checklistdemo.abs.DataProvider;
 
 /**
  * Prepares data asynchronously and returns to the provided callback.
  */
 public class AsyncMessageProvider implements DataProvider {
+    private Random mRandom = new Random();
+
     @Override
     public void loadTitle(final LoadTitleCallback callback) {
         new AsyncTask<Void, Void, String>(){
             @Override
             protected String doInBackground(Void... params) {
-                /* Hard work would be done here. */
+                /* Simulate work. */
+                long millis = 1000L + mRandom.nextInt(1000);
+                try {
+                    Thread.sleep(millis);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
                 return "Agent";
             }
 
@@ -29,7 +39,13 @@ public class AsyncMessageProvider implements DataProvider {
         new AsyncTask<Void, Void, String>(){
             @Override
             protected String doInBackground(Void... params) {
-                /* Hard work would be done here. */
+                /* Simulate work. */
+                long millis = 1000L + mRandom.nextInt(1000);
+                try {
+                    Thread.sleep(millis);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
                 return "Bond";
             }
 
@@ -45,7 +61,13 @@ public class AsyncMessageProvider implements DataProvider {
         new AsyncTask<Void, Void, String>(){
             @Override
             protected String doInBackground(Void... params) {
-                /* Hard work would be done here. */
+                /* Simulate work. */
+                long millis = 1000L + mRandom.nextInt(1000);
+                try {
+                    Thread.sleep(millis);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
                 return "Your shaken, not stirred martini is ready.";
             }
 
