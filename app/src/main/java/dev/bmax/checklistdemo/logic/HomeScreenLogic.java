@@ -8,13 +8,21 @@ import dev.bmax.checklistdemo.util.Checklist;
  * Concrete logic-tier implementation for the home screen.
  */
 public class HomeScreenLogic implements HomeScreen.Logic {
+    private HomeScreen.Presentation mPresentation;
+    private DataProvider mProvider;
+    private String mTitle, mName, mMessage;
+    private enum MessagePrerequisites {
+        TITLE, NAME, MESSAGE
+    }
+
+    /**
+     * Public constructor
+     * @param presentation - implementation if the HomeScreen Presentation interface
+     * @param provider - data provider
+     */
     public HomeScreenLogic(HomeScreen.Presentation presentation, DataProvider provider) {
         this.mPresentation = presentation;
         this.mProvider = provider;
-    }
-
-    enum MessagePrerequisites {
-        TITLE, NAME, MESSAGE
     }
 
     @Override
@@ -54,11 +62,4 @@ public class HomeScreenLogic implements HomeScreen.Logic {
             }
         });
     }
-
-    /**
-     * Private property.
-     */
-    private HomeScreen.Presentation mPresentation;
-    private DataProvider mProvider;
-    private String mTitle, mName, mMessage;
 }

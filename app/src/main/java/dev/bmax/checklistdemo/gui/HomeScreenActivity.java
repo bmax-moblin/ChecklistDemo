@@ -1,6 +1,7 @@
 package dev.bmax.checklistdemo.gui;
 
 import android.os.Bundle;
+import android.support.annotation.IdRes;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -13,6 +14,7 @@ import dev.bmax.checklistdemo.R;
 import dev.bmax.checklistdemo.abs.HomeScreen;
 import dev.bmax.checklistdemo.data.AsyncMessageProvider;
 import dev.bmax.checklistdemo.logic.HomeScreenLogic;
+import dev.bmax.checklistdemo.util.Assert;
 
 /**
  * Clicking on the floating action button starts multiple parallel asynchronous tasks.
@@ -21,30 +23,17 @@ import dev.bmax.checklistdemo.logic.HomeScreenLogic;
  * of the tasks. The final message is build from pieces and shown.
  */
 public class HomeScreenActivity extends AppCompatActivity implements HomeScreen.Presentation {
+    private FloatingActionButton mFab;
+    private HomeScreen.Logic mLogic;
+
+    /** Activity methods */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
         mLogic = new HomeScreenLogic(this, new AsyncMessageProvider());
-
-        mFab = (FloatingActionButton) findViewById(R.id.fab);
-        mFab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mLogic.actionButtonPressed();
-            }
-        });
-    }
-
-    @Override
-    public void showMessage(String message) {
-        Snackbar.make(mFab, message, Snackbar.LENGTH_LONG)
-                .setAction("Action", null)
-                .show();
+        setupGui();
     }
 
     @Override
@@ -64,9 +53,35 @@ public class HomeScreenActivity extends AppCompatActivity implements HomeScreen.
         }
     }
 
-    /**
-     * Private property.
-     */
-    private FloatingActionButton mFab;
-    private HomeScreen.Logic mLogic;
+    /** HomeScreen Presentation interface */
+
+    @Override
+    public void showMessage(String message) {
+        Snackbar.make(mFab, message, Snackbar.LENGTH_LONG)
+                .setAction("Action", null)
+                .show();
+    }
+
+    /** Private methods */
+
+    private void setupGui() {
+        Toolbar toolbar = lookup(R.id.toolbar);
+        Assert.notNull(toolbar, "View not found: toolbar");
+        setSupportActionBar(toolbar);
+
+        mFab = lookup(R.id.fab);
+        Assert.notNull(mFab, "View not found: fab");
+        mFab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mLogic.actionButtonPressed();
+            }
+        });
+    }
+
+    private <T extends View> T lookup(@IdRes int viewId) {
+        //noinspection unchecked
+        return (T) findViewById(viewId);
+    }
+
 }
