@@ -1,31 +1,35 @@
 This app demonstrates the usage of a Checklist to synchronize the results of some concurrent tasks. 
 
 Define the set of required objects/events:
-<code><pre>
+<pre>
+<code>
 enum MessagePrerequisites {
-  TITLE, NAME, MESSAGE
+    TITLE, NAME, MESSAGE
 }
-</pre></code>
-
+</code>
+</pre>
 Create the checklist:
-<code><pre>
-final Checklist\<MessagePrerequisites\> checklist = new Checklist<>(
+<pre>
+<code>
+final Checklist&lt;MessagePrerequisites&gt; checklist = new Checklist<>(
         MessagePrerequisites.values(), MessagePrerequisites.class
 );
-</pre></code>
-
+</code>
+</pre>
 Specify the action that should be performed when all the prerequisites are met:
-<code><pre>
+<pre>
+<code>
 checklist.setOnCompletedListener(new Checklist.OnCompletedListener() {
     @Override
     public void onChecklistCompleted() {
         mPresentation.showMessage(mTitle + " " + mName + "! " + mMessage);
     }
 });
-</pre></code>
-
+</code>
+</pre>
 Mark the checklist items:
-<code><pre>
+<pre>
+<code>
 mProvider.loadTitle(new DataProvider.LoadTitleCallback() {
     @Override
     public void onTitleReady(String title) {
@@ -33,6 +37,6 @@ mProvider.loadTitle(new DataProvider.LoadTitleCallback() {
         checklist.mark(MessagePrerequisites.TITLE);
     }
 });
-</pre></code>
-
-See the full [example] (https://github.com/bmax-moblin/ChecklistDemo/blob/master/app/src/main/java/dev/bmax/checklistdemo/logic/HomeScreenLogic.java)
+</code>
+</pre>
+See the full [example](https://github.com/bmax-moblin/ChecklistDemo/blob/master/app/src/main/java/dev/bmax/checklistdemo/logic/HomeScreenLogic.java)
